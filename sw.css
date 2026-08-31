@@ -1,0 +1,944 @@
+/* ==========================================================================
+   1. Reset & Global Variables
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #1a2b3c;  /* Deep Alpine Blue */
+    --accent-color: #bfa15f;   /* Luxury Gold/Champagne */
+    --text-dark: #2d2d2d;
+    --text-light: #ffffff;
+    --bg-light: #f9f9f9;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+    --transition: all 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: #fff;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ==========================================================================
+   2. Reusable UI Components & Buttons
+   ========================================================================== */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-nav {
+    background: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--accent-color);
+    padding: 8px 20px;
+}
+
+.btn-nav:hover {
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.btn-primary {
+    background: var(--accent-color);
+    color: var(--text-light);
+}
+
+.btn-primary:hover {
+    background: #a3874c;
+}
+
+.btn-secondary {
+    background: var(--primary-color);
+    color: var(--text-light);
+}
+
+.btn-secondary:hover {
+    background: #111d2a;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   3. Navigation Bar
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    z-index: 1000;
+    background: rgba(26, 43, 60, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-family: var(--font-heading);
+    color: var(--text-light);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 20px;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* --- Base Hero Structure Context --- */
+.hero-section {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-light, #ffffff);
+    overflow: hidden;
+}
+
+/* --- Media Track Architecture --- */
+.hero-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    
+    /* 
+       Total Animation Loop Length = 15 seconds.
+       Each unique view handles a block window of roughly 5 seconds.
+    */
+    animation: mixMediaTimeline 15s infinite ease-in-out;
+}
+
+/* --- Layout control for Background Video --- */
+.hero-video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* --- Layout control for Background Images --- */
+.media-slide {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.04); /* Soft premium cinematic zoom base */
+}
+
+/* --- Sequential Delays For The 3-Slide System --- */
+.slide:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.slide:nth-child(2) {
+    animation-delay: 5s; /* Fires up right as Slide 1 finishes its stable hold */
+}
+
+.slide:nth-child(3) {
+    animation-delay: 10s; /* Fires up right as Slide 2 finishes its stable hold */
+}
+
+/* --- Core Keyframe Crossfade Logic --- */
+@keyframes mixMediaTimeline {
+    0% {
+        opacity: 0;
+    }
+    6% {
+        opacity: 1; /* Smooth Fade In threshold */
+    }
+    33% {
+        opacity: 1; /* Stable visibility hold state */
+    }
+    40% {
+        opacity: 0; /* Fade Out threshold to yield to next asset layer */
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* --- Readability Darkening Treatment Layer --- */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.65));
+    z-index: 2; /* Sandwiched completely over video/image track, below layout text labels */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10; /* Brought explicitly forward to stay clickable and visible */
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-content .subtitle {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--accent-color, #bfa15f);
+    display: block;
+    margin-bottom: 15px;
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading, 'Cormorant Garamond', serif);
+    font-size: 4rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* --- Mobile Responsiveness Adjustments --- */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.4rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+}
+
+
+/* ==========================================================================
+   5. Booking Bar
+   ========================================================================== */
+/* Container for the Booking Bar */
+        .booking-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 4px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* Form Layout */
+        .booking-form {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr) auto;
+            align-items: center;
+        }
+
+        /* Individual Input Group Boxes */
+        .input-group {
+            padding: 15px 25px;
+            border-right: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Labels styling (Check-in, Check-out, Guests) */
+        .input-group label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #7a7a7a;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        /* Raw Input Adjustments */
+        .input-group input, 
+        .input-group select {
+            border: none;
+            outline: none;
+            font-size: 15px;
+            color: #2c3e50;
+            font-weight: 500;
+            background: transparent;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* Action/Submit Button Container */
+        .button-group {
+            padding: 0 15px;
+        }
+
+        /* Book Now Button Style */
+        .book-btn {
+            background-color: #1a252f;
+            color: #ffffff;
+            border: none;
+            padding: 14px 28px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .book-btn:hover {
+            background-color: #d4af37; /* Warm gold accent color on hover */
+        }
+
+        /* Responsive stack layout for mobile views */
+        @media (max-width: 768px) {
+            .booking-form {
+                grid-template-columns: 1fr;
+            }
+            .input-group {
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            .button-group {
+                padding: 20px;
+                text-align: center;
+            }
+            .book-btn {
+                width: 100%;
+            }
+        }
+
+/* ==========================================================================
+   6. About Section
+   ========================================================================== */
+.about-section {
+    padding: 120px 0;
+    text-align: center;
+    background-color: var(--bg-light);
+}
+
+.about-text {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.about-text h2 {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.about-text p {
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+/* ==========================================================================
+   7. Rooms Responsive Grid Portfolio (9 Items)
+   ========================================================================== */
+.experience-gallery {
+    padding: 100px 0;
+    background: #fff;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.gallery-item {
+    position: relative;
+    height: 350px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(26, 43, 60, 0.9), rgba(0, 0, 0, 0.1));
+    display: flex;
+    align-items: flex-end;
+    padding: 30px;
+    opacity: 0.95;
+    transition: var(--transition);
+}
+
+.gallery-overlay h3 {
+    font-family: var(--font-heading);
+    color: var(--text-light);
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.gallery-overlay p {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+.gallery-item:hover .gallery-overlay {
+    background: linear-gradient(to top, rgba(191, 161, 95, 0.95), rgba(0, 0, 0, 0.3));
+
+
+}
+
+
+  /* Container layout creating 3 equal columns that automatically scale */
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Individual Card Structural Core */
+.room-card {
+    position: relative;
+    aspect-ratio: 16 / 10; /* Maintains wide-screen luxury photo aspects */
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.3s ease;
+}
+
+/* Elegant card hover interaction */
+.room-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(214, 175, 55, 0.25); /* Warm gold elevation glow */
+}
+
+/* Dark Gradient Vignette Layer to keep typography crisp and readable */
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.2) 100%);
+    z-index: 1;
+}
+
+/* Typography Content Box wrapper */
+.room-info {
+    position: relative;
+    z-index: 2; /* Forces text layers above dark overlays */
+    padding: 24px;
+    color: #ffffff;
+}
+
+.room-title {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin: 0 0 6px 0;
+    letter-spacing: 0.5px;
+}
+
+.room-description {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 0.9rem;
+    color: #cccccc;
+    margin: 0;
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+/* --- Dynamic Background Photo Assets --- */
+.card-1 { background: url('ok.jpg') center/cover no-repeat; }
+.card-2 { background: url('oopj.jpg') center/cover no-repeat; }
+.card-3 { background: url('uhh.png') center/cover no-repeat; }
+.card-4 { background: url('oos.jpg') center/cover no-repeat; }
+.card-5 { background: url('ooph.png') center/cover no-repeat; }
+.card-6 { background: url('https://unsplash.com') center/cover no-repeat; }
+
+/* --- Responsive Adaptability Breakpoints --- */
+@media (max-width: 992px) {
+    .rooms-grid {
+        grid-template-columns: repeat(2, 1fr); /* Collapses into 2 columns on tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .rooms-grid {
+        grid-template-columns: 1fr; /* Spans single column stack on smartphones */
+        gap: 16px;
+    }
+}
+
+
+  /* ==========================================================================
+   MODAL POPUP OVERLAY COMPONENT
+   ========================================================================== */
+
+/* Full-Screen Dark Background Covering Page Layer */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 15, 20, 0.85); /* Premium velvet dark backdrop backdrop blur layout */
+    backdrop-filter: blur(8px); /* Modern soft blurred background effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Stays above room cards */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* JavaScript Trigger State - Toggles Visibility */
+.modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Core Modal Container Card Window Box */
+.booking-modal {
+    background-color: #ffffff;
+    color: #2c3e50;
+    padding: 40px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 480px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-sizing: border-box;
+}
+
+/* Smooth pop up sliding up physics interaction when opened */
+.modal-overlay.open .booking-modal {
+    transform: translateY(0);
+}
+
+/* Close Out "X" Symbol Action Button */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 28px;
+    font-weight: 300;
+    color: #95a5a6;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #e74c3c; /* Turns soft red on close window action focus */
+    transform: scale(1.1);
+}
+
+/* Typography Title Headings Elements */
+.booking-modal h2 {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1a252f;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.5px;
+}
+
+.modal-subtitle {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin: 0 0 28px 0;
+    font-weight: 400;
+}
+
+/* ==========================================================================
+   FORM CONTROLS & FIELDS
+   ========================================================================== */
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Layout Row to stack dates evenly side-by-side */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Label Typography Structuring */
+.form-group label {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #7f8c8d;
+    margin-bottom: 8px;
+}
+
+/* Input Fields Core Sizing and Theme Design resets */
+.form-group input, 
+.form-group select {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    color: #2c3e50;
+    background-color: #f8f9fa;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Active Highlight Focus outline effect */
+.form-group input:focus, 
+.form-group select:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+/* Special styling configuration clean layout for locked ReadOnly selection inputs */
+.form-group .input-readonly {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #475569;
+    font-weight: 600;
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   SUBMIT ACTION TRIGGER MAIN BUTTON
+   ========================================================================== */
+.submit-btn {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #1a252f;
+    color: #ffffff;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.submit-btn:hover {
+    background-color: #d4af37; /* Luxury gold transition on button hover state */
+}
+
+.submit-btn:active {
+    transform: scale(0.98); /* Tactile press down feel when clicked */
+}
+
+/* Collapse side-by-side row setups onto smaller screens layout options */
+@media (max-width: 480px) {
+    .booking-modal {
+        padding: 30px 20px;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+
+/* --- Multi-Video Travel Grid Layout --- */
+.tour-video-section {
+    padding: 100px 0;
+    background-color: #f9f9f9; /* Light slate background to contrast white cards */
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.video-card {
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Forces 16:9 Widescreen Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    background: #000000;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.video-info {
+    padding: 20px;
+}
+
+.video-info h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: #1a2b3c;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.video-info p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.88rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* --- Mobile Responsiveness Breakpoint --- */
+@media (max-width: 768px) {
+    .video-grid {
+        grid-template-columns: 1fr; /* Stack video cards cleanly in a single column */
+        gap: 20px;
+    }
+}
+
+/* ==========================================
+   Footer Styles 
+   ========================================== */
+:root {
+    --footer-bg: #082f89;       /* Deep slate/navy alpine tone */
+    --footer-text: #a0aec0;     /* Soft muted gray for readability */
+    --footer-heading: #ffffff;  /* High contrast white for headers */
+    --accent-color: #d4af37;    /* Luxury gold accent */
+    --transition-speed: 0.3s;
+}
+
+.footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: 80px 5% 30px 5%;
+    font-family: sans-serif; /* Fallback until your Google Font loads */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Brand Column */
+.footer-column .footer-logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--footer-heading);
+    margin-bottom: 20px;
+}
+
+.footer-column h3 {
+    color: var(--footer-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.footer-text {
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+/* Lists & Links */
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+    color: var(--footer-text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color var(--transition-speed) ease;
+}
+
+.footer-column ul li a:hover {
+    color: var(--accent-color);
+}
+
+/* Contact Info specifics */
+.contact-info li {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Social Links Layout */
+.social-links a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    opacity: 0.8;
+    transition: opacity var(--transition-speed) ease;
+}
+
+.social-links a:hover {
+    opacity: 1;
+}
+
+/* Bottom Bar styling */
+.footer-bottom {
+    max-width: 1200px;
+    margin: 30px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.footer-legal a {
+    color: var(--footer-text);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color var(--transition-speed) ease;
+}
+
+.footer-legal a:hover {
+    color: var(--accent-color);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .footer-legal a {
+        margin: 0 10px;
+    }
+}
