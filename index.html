@@ -1,0 +1,436 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Swiss Alps | Luxury Alpine Resort</title>
+    <link rel="stylesheet" href="sw.css">
+    <!-- Google Fonts for Modern Typography -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <script src="swiss.js"></script>
+
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="navbar">
+        <div class="logo">AMAZING SWISS ALPS</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#about">The Resort</a></li>
+                <li><a href="#rooms">Our Rooms</a></li>
+                <li><a href="#tours">Travel Videos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="#book" class="btn btn-nav">Book Now</a>
+    </header>
+
+<!-- Hero Section with Mixed Multi-Picture and Background Video Slideshow -->
+<section class="hero-section">
+    <div class="hero-slideshow">
+        
+        <!-- Slide 1: Picture -->
+        <div class="slide media-slide" style="background-image: url('jjkk.png');"></div>
+        
+        <!-- Slide 2: Video (Fades in over Slide 1, loops natively inside its slot) -->
+        <div class="slide video-slide">
+            <video autoplay muted loop playsinline class="hero-video-bg">
+                <source src="vv.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <!-- Slide 3: Picture -->
+        <div class="slide media-slide" style="background-image: url('oop.jpg');"></div>
+
+    </div>
+    
+    <!-- Unified Dark Overlay tint for typography safety -->
+    <div class="hero-overlay"></div>
+
+    <!-- Static typography elements sitting cleanly on top of the cross-fading media track -->
+    <div class="hero-content">
+        <span class="subtitle">Luxury Alpine Escape</span>
+        <h1>Experience Pure Serenity</h1>
+        <p>Disconnect in the heart of the Swiss mountains.</p>
+        <a href="#rooms" class="btn btn-primary">Explore Resort Suites</a>
+    </div>
+</section>
+
+
+    <!-- Quick Booking Bar -->
+    
+    <div class="booking-container">
+        <form class="booking-form" id="hotelBookingForm">
+            <!-- Check In Field -->
+            <div class="input-group">
+                <label for="checkIn">Check-In</label>
+                <input type="date" id="checkIn" required>
+            </div>
+
+            <!-- Check Out Field -->
+            <div class="input-group">
+                <label for="checkOut">Check-Out</label>
+                <input type="date" id="checkOut" required>
+            </div>
+
+            <!-- Guests Field -->
+            <div class="input-group">
+                <label for="guests">Guests</label>
+                <select id="guests">
+                    <option value="1">1 Guest</option>
+                    <option value="2" selected>2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5+">5+ Guests</option>
+                </select>
+            </div>
+
+            <!-- Submit Button Trigger -->
+            <div class="button-group">
+                <button type="submit" class="book-btn">Check Availability</button>
+            </div>
+        </form>
+    </div>
+
+
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-text">
+                <h2>A Sanctuary Above the Clouds</h2>
+                <p>Nestled in the majestic peaks, Amazing Swiss Alps combines traditional alpine warmth with ultra-modern luxury. Enjoy panoramic ski-in/ski-out access, pristine glacial air, and world-class hospitality tailored to your absolute comfort.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expanded Rooms Portfolio (9 Luxury Options) -->
+    <section class="experience-gallery" id="rooms">
+        <div class="container">
+            <h2 class="section-title">Our Signature Retreats</h2>
+            <div class="gallery-grid">
+                
+                <!-- 1. Suite Room -->
+                <div class="gallery-item">
+                     <a href="booking-alpine-suite.html" class="gallery-link">
+                    <img src="kk.png" alt="Alpine Suite Room">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3>Alpine Suite</h3>
+                            <p>Panoramic mountain views & private fireplace.</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <!-- 2. Deluxe Room -->
+                <div class="gallery-item">
+                     <a href="booking-deluxe-suite.html" class="gallery-link">
+                    <img src="jjs.png" alt="Matterhorn Deluxe Room">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3>Matterhorn Deluxe</h3>
+                            <p>Hand-crafted timber panels & king-sized comfort.</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <!-- 3. Hot Swimming Pool Suite -->
+                <div class="gallery-item">
+                    <img src="ho.jpg" alt="Thermal Pool Entry Suite">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3>Thermal Pool Suite</h3>
+                            <p>Direct entry to our heated pool amenities.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Panorama Terrace Room -->
+                <div class="gallery-item">
+                     <a href="booking-glacier-view-terrace.html" class="gallery-link">
+                    <img src="swi.jpg" alt="Glacier View Terrace Room">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3>Glacier View Terrace</h3>
+                            <p>Private stone balcony directly facing the slopes.</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <!-- 5. Executive Alpine Lodge -->
+                <div class="gallery-item">
+                    <img src="llo.jpg" alt="Executive Peak Lodge">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3>Executive Peak Lodge</h3>
+                            <p>Multi-room wood layout tailored for deep comfort.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Ultimate Wellness Penthouse -->
+                <div class="gallery-item">
+                    <a href="booking-the-alps-penthouse.html" class="gallery-link">
+                    <img src="lu.jpg" alt="The Alps Penthouse Studio">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3>The Alps Penthouse</h3>
+                            <p>Top-floor private studio with attached Finnish sauna.</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <!-- 7. Eiger Vista Double -->
+                <div class="gallery-item">
+                    <img src="oopj.jpg" alt="Eiger Vista Double Room">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3>Eiger Vista Double</h3>
+                            <p>Modern minimalist framing highlighting steep snow peaks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Cresta Signature Chalet -->
+                <div class="gallery-item">
+                    <a href="booking-cresta-private-chalet.html" class="gallery-link">
+                    <img src="ooh.jpg" alt="Cresta Private Alpine Chalet">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3>Cresta Private Chalet</h3>
+                            <p>Standalone multi-floor stone structure with private butler.</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+                <!-- 9. Sanctuary Spa Vault -->
+                <div class="gallery-item">
+                    <img src="ddp.jpg" alt="Sanctuary Spa Retreat Suite">
+                    <div class="gallery-overlay">
+                        <div>
+                            <h3>Sanctuary Spa Vault</h3>
+                            <p>Subterranean suite built with integrated thermal massage baths.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+   <!-- One single master grid container housing all 6 room cards -->
+<div class="rooms-grid">
+
+    <!-- Card 1: Alpine Suite -->
+    <div class="room-card card-1" onclick="openBooking('Alpine Suite')">
+        <div class="card-overlay"></div>
+        <div class="room-info">
+            <h3 class="room-title">Alpine Suite</h3>
+            <p class="room-description">Panoramic mountain views & private fireplace.</p>
+        </div>
+    </div>
+
+    <!-- Card 2: Matterhorn Deluxe -->
+    <div class="room-card card-2" onclick="openBooking('Matterhorn Deluxe')">
+        <div class="card-overlay"></div>
+        <div class="room-info">
+            <h3 class="room-title">Matterhorn Deluxe</h3>
+            <p class="room-description">Hand-crafted timber panels & king-sized comfort.</p>
+        </div>
+    </div>
+
+    <!-- Card 3: Thermal Pool Suite -->
+    <div class="room-card card-3" onclick="openBooking('Thermal Pool Suite')">
+        <div class="card-overlay"></div>
+        <div class="room-info">
+            <h3 class="room-title">Thermal Pool Suite</h3>
+            <p class="room-description">Direct entry to our heated pool amenities.</p>
+        </div>
+    </div>
+
+    <!-- Card 4: Glacier View Terrace -->
+    <div class="room-card card-4" onclick="openBooking('Glacier View Terrace')">
+        <div class="card-overlay"></div>
+        <div class="room-info">
+            <h3 class="room-title">Glacier View Terrace</h3>
+            <p class="room-description">Stunning glacial outlooks with private balcony access.</p>
+        </div>
+    </div>
+
+    <!-- Card 5: Suite Alpine Breakfast -->
+    <div class="room-card card-5" onclick="openBooking('Suite Alpine Break-Fast')">
+        <div class="card-overlay"></div>
+        <div class="room-info">
+            <h3 class="room-title">Suite Alpine Breakfast</h3>
+            <p class="room-description">Includes an authentic, gourmet hot morning buffet.</p>
+        </div>
+    </div>
+
+    <!-- Card 6: Deluxe Swiss Alps SPA -->
+    <div class="room-card card-6" onclick="openBooking('Deluxe- Swiss-Alps-SPA')">
+        <div class="card-overlay"></div>
+        <div class="room-info">
+            <h3 class="room-title">Deluxe Swiss Alps SPA</h3>
+            <p class="room-description">Premium room package featuring an attached private sauna.</p>
+        </div>
+    </div>
+
+</div> <!-- End of master grid container -->
+
+
+
+<!-- 2. The Booking Form Window Popup Component -->
+<div class="modal-overlay" id="bookingModal">
+    <div class="booking-modal">
+        <!-- Close Window X Trigger Button -->
+        <span class="close-btn" onclick="closeBooking()">&times;</span>
+        
+        <h2>Book Your Stay</h2>
+        <p class="modal-subtitle">Complete the fields below to secure your suite luxury package.</p>
+        
+        <form id="reservationForm">
+            <!-- Room Selection Display -->
+            <div class="form-group">
+                <label for="selectedRoom">Selected Suite</label>
+                <input type="text" id="selectedRoom" class="input-readonly" readonly>
+            </div>
+
+            <!-- Date Block Wrapper (Side-by-side alignment on Desktop) -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="checkIn">Check-In Date</label>
+                    <input type="date" id="checkIn" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="checkOut">Check-Out Date</label>
+                    <input type="date" id="checkOut" required>
+                </div>
+            </div>
+
+            <!-- Guest Selection Selector Group -->
+            <div class="form-group">
+                <label for="guests">Number of Guests</label>
+                <select id="guests">
+                    <option value="1">1 Guest</option>
+                    <option value="2" selected>2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                </select>
+            </div>
+
+            <!-- Submit Button Interaction -->
+            <button type="submit" class="submit-btn">Confirm Reservation</button>
+        </form>
+    </div>
+</div>
+
+
+
+   <!-- Expanded Travel Videos Section (4 Cinematic Showcases) -->
+<section class="tour-video-section" id="tours">
+    <div class="container">
+        <h2 class="section-title">A Visual Journey Through Switzerland</h2>
+        <div class="video-grid">
+            
+            <!-- Video 1: Cinematic Resort Overview -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="hy.mp4" title="Switzerland Tour" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>Cinematic Alpine Tour</h4>
+                    <p>An overarching aerial perspective across local glacier lakes and sky-high ski tracks.</p>
+                </div>
+            </div>
+
+            <!-- Video 2: Train & Scenic Passages -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="oop.mp4" title="Swiss Train Journey" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>Glacier Express Highlights</h4>
+                    <p>Explore mountain routes cutting perfectly through pristine winter forests and high trails.</p>
+                </div>
+            </div>
+
+            <!-- Video 3: Summer Mountain Nature -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="yyd.mp4" title="Swiss Alps Nature" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>Summer Valley Escape</h4>
+                    <p>Unveil hidden waterfall walkways and bright green pastures sitting below snowy tops.</p>
+                </div>
+            </div>
+
+            <!-- Video 4: Winter Slopes -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="iik.mp4" title="Swiss Winter Wonderland" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h4>Winter Powder Slopes</h4>
+                    <p>A fast-paced review of global extreme ski lanes and deep snow peaks in Switzerland.</p>
+                </div>
+            </div>
+
+        </div> <!-- /video-grid -->
+    </div> <!-- /container -->
+</section> <!-- /tour-video-section -->
+
+                        
+      <!-- Footer Section -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+            <!-- Brand & Philosophy -->
+            <div class="footer-column brand-col">
+                <div class="footer-logo">AMAZING SWISS ALPS</div>
+                <p class="footer-text">Where timeless alpine tradition meets unmatched modern luxury. Discover pure serenity in the heart of the mountains.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="TripAdvisor">✈️</a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-column">
+                <h3>The Resort</h3>
+                <ul>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#rooms">Suites & Chalets</a></li>
+                    <li><a href="#amenities">Wellness & Spa</a></li>
+                    <li><a href="#dining">Fine Dining</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact & Location -->
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li>📍 Via Alpina 42, 7500 St. Moritz, Switzerland</li>
+                    <li>📞 +41 81 123 45 67</li>
+                    <li>✉️ reservations@amazingswissalps.com</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Bar -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Amazing Swiss Alps Resort. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
